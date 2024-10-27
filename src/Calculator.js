@@ -1,80 +1,86 @@
 import React, { useState } from 'react';
-import { Button, Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 import './Calculator.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Calculator = () => {
   const [input, setInput] = useState('');
-  
+  const [result, setResult] = useState('');
+  const [isNightMode, setIsNightMode] = useState(false);
+
   const handleClick = (value) => {
-    setInput(input + value);
+    setInput((prev) => prev + value);
   };
 
-  const calculate = () => {
+  const handleClear = () => {
+    setInput('');
+    setResult('');
+  };
+
+  const handleCalculate = () => {
     try {
-      setInput(eval(input).toString());
-    } catch {
-      setInput('Error');
+      // Replace trigonometric functions for evaluation
+      const formattedInput = input
+        .replace(/sin/g, 'Math.sin')
+        .replace(/cos/g, 'Math.cos')
+        .replace(/tan/g, 'Math.tan')
+        .replace(/π/g, 'Math.PI'); // Replace π with Math.PI
+
+      const calculatedResult = eval(formattedInput);
+      setResult(calculatedResult.toString());
+    } catch (error) {
+      setResult('Error');
     }
   };
 
-  const clearInput = () => {
-    setInput('');
+  const handleToggleNightMode = () => {
+    setIsNightMode((prev) => !prev);
   };
 
   return (
-    <>
-      {/* Header */}
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Container>
-          <Navbar.Brand href="#">My Calculator</Navbar.Brand>
-          <Nav className="ml-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#contact">Contact</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-      <Container className="calculator-container mt-5 p-4">
-        {/* Calculator Display */}
-        <Row>
-          <Col xs={12}>
-            <input type="text" className="calculator-display mb-3" value={input} readOnly />
-          </Col>
-        </Row>
-
-        {/* Calculator Buttons */}
-        <Row className="mb-2">
-          <Col><Button variant="light" onClick={() => handleClick('7')}>7</Button></Col>
-          <Col><Button variant="light" onClick={() => handleClick('8')}>8</Button></Col>
-          <Col><Button variant="light" onClick={() => handleClick('9')}>9</Button></Col>
-          <Col><Button variant="warning" onClick={() => handleClick('/')}>÷</Button></Col>
-        </Row>
-        <Row className="mb-2">
-          <Col><Button variant="light" onClick={() => handleClick('4')}>4</Button></Col>
-          <Col><Button variant="light" onClick={() => handleClick('5')}>5</Button></Col>
-          <Col><Button variant="light" onClick={() => handleClick('6')}>6</Button></Col>
-          <Col><Button variant="warning" onClick={() => handleClick('*')}>×</Button></Col>
-        </Row>
-        <Row className="mb-2">
-          <Col><Button variant="light" onClick={() => handleClick('1')}>1</Button></Col>
-          <Col><Button variant="light" onClick={() => handleClick('2')}>2</Button></Col>
-          <Col><Button variant="light" onClick={() => handleClick('3')}>3</Button></Col>
-          <Col><Button variant="warning" onClick={() => handleClick('-')}>-</Button></Col>
-        </Row>
-        <Row className="mb-2">
-          <Col><Button variant="light" onClick={() => handleClick('0')}>0</Button></Col>
-          <Col><Button variant="light" onClick={clearInput}>C</Button></Col>
-          <Col><Button variant="light" onClick={calculate}>=</Button></Col>
-          <Col><Button variant="warning" onClick={() => handleClick('+')}>+</Button></Col>
-        </Row>
-      </Container>
-
-      {/* Footer */}
-      <footer className="footer bg-dark text-white text-center p-3">
-        <p>Calculator App © 2024 | Created by [Your Name]</p>
+    <div className={`calculator-app ${isNightMode ? 'night-mode' : ''}`}>
+      <header className="header fixed-top">
+        <h3>Scientific Calculator</h3>
+        <button onClick={handleToggleNightMode} className="night-mode-toggle">
+          {isNightMode ? (
+            <i className="fas fa-sun"></i> // Sun icon for day mode
+          ) : (
+            <i className="fas fa-moon"></i> // Moon icon for night mode
+          )}
+        </button>
+      </header>
+      <div className="calculator-container mt-5 pb-2 mb-0">
+        <div className="calculator-display">
+          <input type="text" value={input}  />
+          <div className="result">{result}</div>
+        </div>
+        <div className="button-grid">
+          <button onClick={() => handleClick('1')}>1</button>
+          <button onClick={() => handleClick('2')}>2</button>
+          <button onClick={() => handleClick('3')}>3</button>
+          <button onClick={() => handleClick('+')}>+</button>
+          <button onClick={() => handleClick('4')}>4</button>
+          <button onClick={() => handleClick('5')}>5</button>
+          <button onClick={() => handleClick('6')}>6</button>
+          <button onClick={() => handleClick('-')}>-</button>
+          <button onClick={() => handleClick('7')}>7</button>
+          <button onClick={() => handleClick('8')}>8</button>
+          <button onClick={() => handleClick('9')}>9</button>
+          <button onClick={() => handleClick('*')}>*</button>
+          <button onClick={handleClear}>C</button>
+          <button onClick={() => handleClick('0')}>0</button>
+          <button onClick={handleCalculate}>=</button>
+          <button onClick={() => handleClick('/')}>/</button>
+          <button onClick={() => handleClick('sin(')}>sin</button>
+          <button onClick={() => handleClick('cos(')}>cos</button>
+          <button onClick={() => handleClick('tan(')}>tan</button>
+          <button onClick={() => handleClick('π')}>π</button>
+          <button onClick={() => handleClick(')')}>)</button>
+        </div>
+      </div>
+      <footer className="footer fixed-bottom mt-5">
+        <p>Calculator Footer Content</p>
       </footer>
-    </>
+    </div>
   );
 };
 
