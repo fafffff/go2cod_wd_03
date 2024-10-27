@@ -1,0 +1,63 @@
+/* Calculator Container */
+.calculator-container {
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Display Styling */
+.calculator-display {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.5rem;
+  text-align: right;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Dark Blue and Goldenrod Color Styling */
+.navbar, .footer {
+  background-color: #002366;
+}
+
+.calculator-display {
+  color: #002366;
+}
+
+button.variant-warning {
+  background-color: goldenrod;
+  color: white;
+}
+
+button.variant-light {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* Footer Styling */
+.footer p {
+  margin-top: 90px;
+  margin-bottom:0;
+}
