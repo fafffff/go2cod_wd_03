@@ -18,13 +18,14 @@ const Calculator = () => {
 
   const handleCalculate = () => {
     try {
+      // eslint-disable-next-line no-eval
       // Replace trigonometric functions for evaluation
       const formattedInput = input
         .replace(/sin/g, "Math.sin")
         .replace(/cos/g, "Math.cos")
         .replace(/tan/g, "Math.tan")
         .replace(/π/g, "Math.PI"); // Replace π with Math.PI
-
+      // eslint-disable-next-line no-eval
       const calculatedResult = eval(formattedInput);
       setResult(calculatedResult.toString());
     } catch (error) {
