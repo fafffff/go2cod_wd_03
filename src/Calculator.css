@@ -13,13 +13,13 @@ body {
 .calculator-app {
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
-  margin-top:60px;
- 
+  min-height: 100vh;
+  margin-top: 60px;
+  margin-bottom: 90px;
 }
 
 .header {
-  background-color: #000fff;
+  background-color: #040fac;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -32,7 +32,7 @@ body {
 }
 
 .footer {
-  background-color: #000fff;
+  background-color: #040fac;
   text-align: center;
   padding: 30px;
   color: goldenrod;
@@ -49,9 +49,9 @@ body {
   padding: 30px;
   width: 100%;
   max-width: 400px;
-  margin: 100px auto ;
-   margin-bottom:60px;
-  
+  margin: 100px auto;
+  margin-bottom: 90px auto;
+
   flex: 1;
 }
 
@@ -63,7 +63,7 @@ body {
   width: 100%;
   height: 40px;
   text-align: right;
-  border: 1px solid #007bff;
+  border: 1px solid #0b23fc;
   border-radius: 5px;
   padding: 10px;
   font-size: 1.5rem;
@@ -137,4 +137,27 @@ button:active {
 
 .night-mode footer {
   background-color: #333;
+}
+
+@media (max-width: 860px) {
+  .calculator-container {
+    width: 100%;
+    padding-bottom: 0px;
+    max-height: 40%;
+    margin: 100px auto;
+  }
+
+  .calculator-display input {
+    font-size: 1.7rem;
+  }
+
+  .button-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  button {
+    padding: 18px;
+    font-size: 22px;
+  }
 }
