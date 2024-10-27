@@ -79,8 +79,9 @@ const Calculator = () => {
       </div>
       <footer className="footer fixed-bottom mt-5">
         <p>
-          This App was build by <a href="/">Fasika Belayneh</a>
-          and Hoisted on <a href="/">Netlify.</a>
+          This App was build by{" "}
+          <a href="https://github.com/fafffff/go2cod_wd_03">Fasika Belayneh</a>
+          and Hoisted on <a href="https://app.netlify.com/">Netlify.</a>
         </p>
         <p>&copy; 2024 My Calculator</p>
       </footer>
